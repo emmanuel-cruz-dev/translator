@@ -34,7 +34,6 @@ function App() {
               onChange={setFromLanguage}
             />
             <TextArea
-              placeholder="Introducir texto"
               type={SectionType.From}
               value={fromText}
               onChange={setFromText}
@@ -61,7 +60,6 @@ function App() {
             />
 
             <TextArea
-              placeholder="Traducción"
               type={SectionType.To}
               value={result}
               onChange={setResult}
