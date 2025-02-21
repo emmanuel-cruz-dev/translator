@@ -57,12 +57,20 @@ function reducer(state: State, action: Action) {
 }
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [{ fromLanguage, toLanguage, fromText, result, loading }, dispatch] =
+    useReducer(reducer, initialState);
 
   return (
     <div className="App">
       <h1>Translator</h1>
-      <p>{initialState.fromLanguage}</p>
+      <p>{fromLanguage}</p>
+      <button
+        onClick={() => {
+          dispatch({ type: "SET_FROM_LANGUAGE", payload: "es" });
+        }}
+      >
+        Cambiar a Español
+      </button>
     </div>
   );
 }
