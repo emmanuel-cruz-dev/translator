@@ -10,6 +10,8 @@ interface Props {
   value: string;
 }
 
+const commonStyles = { border: 0, height: "200px" };
+
 export const TextArea: FC<Props> = ({
   type,
   placeholder,
@@ -17,12 +19,17 @@ export const TextArea: FC<Props> = ({
   value,
   onChange,
 }) => {
+  const styles =
+    type === SectionType.From
+      ? commonStyles
+      : { ...commonStyles, backgroundColor: "#f5f5f5" };
+
   return (
     <Form.Control
       autoFocus={type === SectionType.From}
       as="textarea"
       placeholder={placeholder}
-      style={{ height: "150px" }}
+      style={styles}
     />
   );
 };
