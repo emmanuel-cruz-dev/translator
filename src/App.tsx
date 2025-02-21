@@ -4,9 +4,16 @@ import { useStore } from "./hooks/useStore";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { AUTO_LANGUAGE } from "./constants/constants";
 import { ArrowsIcon } from "./components/Icons";
+import { LanguageSelector } from "./components/LanguageSelector";
 
 function App() {
-  const { fromLanguage, toLanguage, interchangeLanguages } = useStore();
+  const {
+    fromLanguage,
+    toLanguage,
+    interchangeLanguages,
+    setFromLanguage,
+    setToLanguage,
+  } = useStore();
 
   return (
     <Container fluid>
@@ -14,7 +21,7 @@ function App() {
 
       <Row>
         <Col>
-          <h2>From</h2>
+          <LanguageSelector onChange={setFromLanguage} />
           {fromLanguage}
         </Col>
 
@@ -29,7 +36,7 @@ function App() {
         </Col>
 
         <Col>
-          <h2>To</h2>
+          <LanguageSelector onChange={setToLanguage} />
           {toLanguage}
         </Col>
       </Row>
