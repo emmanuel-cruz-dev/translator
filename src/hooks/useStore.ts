@@ -62,8 +62,20 @@ export function useStore() {
     dispatch({ type: "INTERCHANGE_LANGUAGES" });
   };
 
-  const setFromLanguage = () => {
-    dispatch({ type: "SET_FROM_LANGUAGE", payload: "es" });
+  const setFromLanguage = (payload: string) => {
+    dispatch({ type: "SET_FROM_LANGUAGE", payload });
+  };
+
+  const setToLanguage = (payload: string) => {
+    dispatch({ type: "SET_TO_LANGUAGE", payload });
+  };
+
+  const setFromText = (payload: string) => {
+    dispatch({ type: "SET_FROM_TEXT", payload });
+  };
+
+  const setResult = (payload: string) => {
+    dispatch({ type: "SET_RESULT", payload });
   };
 
   return {
@@ -74,5 +86,8 @@ export function useStore() {
     loading,
     interchangeLanguages,
     setFromLanguage,
+    setToLanguage,
+    setFromText,
+    setResult,
   };
 }
