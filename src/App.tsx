@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { useStore } from "./hooks/useStore";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { AUTO_LANGUAGE } from "./constants/constants";
 import { ArrowsIcon } from "./components/Icons";
 import { LanguageSelector } from "./components/LanguageSelector";
@@ -27,7 +27,12 @@ function App() {
             value={fromLanguage}
             onChange={setFromLanguage}
           />
-          {fromLanguage}
+          <Form.Control
+            as="textarea"
+            placeholder="Introducir texto"
+            autoFocus
+            style={{ height: "150px" }}
+          />
         </Col>
 
         <Col>
@@ -46,7 +51,11 @@ function App() {
             value={toLanguage}
             onChange={setToLanguage}
           />
-          {toLanguage}
+          <Form.Control
+            as="textarea"
+            placeholder="Traducción"
+            style={{ height: "150px" }}
+          />
         </Col>
       </Row>
     </Container>
