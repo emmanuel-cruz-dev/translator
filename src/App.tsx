@@ -9,9 +9,7 @@ function App() {
     <div className="App">
       <h1>Translator</h1>
       <p>{fromLanguage}</p>
-      <button onClick={() => setFromLanguage("chinese")}>
-        Cambiar a Español
-      </button>
+      <button onClick={() => setFromLanguage("de")}>Cambiar a Español</button>
     </div>
   );
 }
