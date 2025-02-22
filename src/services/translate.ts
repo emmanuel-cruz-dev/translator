@@ -1,11 +1,14 @@
-import { Configuration, OpenAIApi } from "openai";
+import Configuration, {
+  ChatCompletionRequestMessageRoleEnum,
+  OpenAI,
+} from "openai";
 import { SUPPORTED_LANGUAGES } from "../constants/constants";
-import { FromLanguage, Language } from "../types.d";
+import { type FromLanguage, type Language } from "../types.d";
 
 const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
 
 const configuration = new Configuration({ apiKey });
-const openai = new OpenAIApi(configuration);
+const openai = new OpenAI(configuration);
 
 export async function tranlate({
   fromLanguage,
@@ -20,9 +23,13 @@ export async function tranlate({
 
   const messages = [
     {
-      role: "system",
+      role: ChatCompletionRequestMessageRoleEnum.System,
       content:
-        "You are a AI that translates text. You receive a text from the user. Do not answer, just translate the text. The original language is surrounded by `{{` and `}}`. You can also receive {{auto}} which means that you have to detect the language. You can translate to any language. The language you translate to is surrounded by `[[` and `]]`.",
+        "You are an AI that translates text. You receive a text from the user. Do not answer, just translate the text. The original language is surrounded by `{{` and `}}`. You can also receive {{auto}} which means that you have to detect the language. You can translate to any language. The language you translate to is surrounded by `[[` and `]]`.",
+    },
+    {
+      role: ChatCompletionRequestMessageRoleEnum.User,
+      content: `Translate from {{${fromLanguage}}} to [[${toLanguage}]]: ${text}`,
     },
   ];
 }
