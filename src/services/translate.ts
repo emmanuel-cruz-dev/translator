@@ -29,7 +29,19 @@ export async function tranlate({
     },
     {
       role: ChatCompletionRequestMessageRoleEnum.User,
-      content: `Translate from {{${fromLanguage}}} to [[${toLanguage}]]: ${text}`,
+      content: `Hola mundo {{Spanish}}} [[English]]`,
+    },
+    {
+      role: ChatCompletionRequestMessageRoleEnum.Assistant,
+      content: "Hello world",
+    },
+    {
+      role: ChatCompletionRequestMessageRoleEnum.User,
+      content: `How are you? {{auto}}} [[Deutsch]]`,
+    },
+    {
+      role: ChatCompletionRequestMessageRoleEnum.Assistant,
+      content: "Wie geht es dir?",
     },
   ];
 }
