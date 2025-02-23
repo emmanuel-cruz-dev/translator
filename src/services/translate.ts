@@ -52,4 +52,20 @@ export async function tranlate({
       content: "Buenos días, ¿Cómo estás?",
     },
   ];
+
+  const fromCode =
+    fromLanguage === "auto" ? "auto" : SUPPORTED_LANGUAGES[fromLanguage];
+
+  const toCode = SUPPORTED_LANGUAGES[toLanguage];
+
+  const completion = await openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    messages: [
+      ...messages,
+      {
+        role: ChatCompletionRequestMessageRoleEnum.User,
+        content: `${text} {{${fromCode}}} [[${toCode}]]`,
+      },
+    ],
+  });
 }
