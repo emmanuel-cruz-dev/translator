@@ -43,5 +43,13 @@ export async function tranlate({
       role: ChatCompletionRequestMessageRoleEnum.Assistant,
       content: "Wie geht es dir?",
     },
+    {
+      role: ChatCompletionRequestMessageRoleEnum.User,
+      content: `Bon dia, com estas? {{auto}}} [[Español]]`,
+    },
+    {
+      role: ChatCompletionRequestMessageRoleEnum.Assistant,
+      content: "Buenos días, ¿Cómo estás?",
+    },
   ];
 }
