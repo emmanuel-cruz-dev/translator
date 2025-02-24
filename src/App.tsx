@@ -4,7 +4,7 @@ import { useStore } from "./hooks/useStore";
 import { useDebounce } from "./hooks/useDebounce";
 import { Container, Row, Col, Button, Stack } from "react-bootstrap";
 import { AUTO_LANGUAGE } from "./constants/constants";
-import { ArrowsIcon } from "./components/Icons";
+import { ArrowsIcon, ClipboardIcon } from "./components/Icons";
 import { LanguageSelector } from "./components/LanguageSelector";
 import { SectionType } from "./types.d";
 import { TextArea } from "./components/TextArea";
@@ -37,6 +37,10 @@ function App() {
       })
       .catch(() => setResult("Error"));
   }, [debouncedFromText, fromLanguage, toLanguage]);
+
+  const handleClipboard = () => {
+    navigator.clipboard.writeText(result).catch(() => {});
+  };
 
   return (
     <Container fluid>
@@ -75,12 +79,21 @@ function App() {
               value={toLanguage}
               onChange={setToLanguage}
             />
-            <TextArea
-              loading={loading}
-              type={SectionType.To}
-              value={result}
-              onChange={setResult}
-            />
+            <div style={{ position: "relative" }}>
+              <TextArea
+                loading={loading}
+                type={SectionType.To}
+                value={result}
+                onChange={setResult}
+              />
+              <Button
+                variant="link"
+                style={{ position: "absolute", left: 0, bottom: 0 }}
+                onClick={handleClipboard}
+              >
+                <ClipboardIcon />
+              </Button>
+            </div>
           </Stack>
         </Col>
       </Row>
