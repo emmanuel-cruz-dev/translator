@@ -49,7 +49,7 @@ export function reducer(state: State, action: Action) {
   }
 
   if (type === "SET_FROM_TEXT") {
-    const loading = action.payload != "";
+    const loading = action.payload !== "";
 
     return {
       ...state,
