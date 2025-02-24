@@ -19,7 +19,7 @@ export async function tranlate({
   toLanguage: Language;
   text: string;
 }) {
-  console.log(openai);
+  if (fromLanguage == toLanguage) return text;
 
   const messages = [
     {
@@ -29,7 +29,7 @@ export async function tranlate({
     },
     {
       role: ChatCompletionRequestMessageRoleEnum.User,
-      content: `Hola mundo {{Spanish}}} [[English]]`,
+      content: `Hola mundo {{Español}} [[English]]`,
     },
     {
       role: ChatCompletionRequestMessageRoleEnum.Assistant,

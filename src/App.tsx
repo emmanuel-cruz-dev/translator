@@ -7,6 +7,7 @@ import { ArrowsIcon } from "./components/Icons";
 import { LanguageSelector } from "./components/LanguageSelector";
 import { SectionType } from "./types.d";
 import { TextArea } from "./components/TextArea";
+import { useEffect } from "react";
 
 function App() {
   const {
@@ -21,6 +22,10 @@ function App() {
     setFromText,
     setResult,
   } = useStore();
+
+  useEffect(() => {
+    console.log(fromText, "useEffect");
+  }, [fromText]);
 
   return (
     <Container fluid>
