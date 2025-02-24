@@ -1,16 +1,19 @@
-import Configuration, {
-  ChatCompletionRequestMessageRoleEnum,
-  OpenAI,
-} from "openai";
+import OpenAIApi from "openai";
 import { SUPPORTED_LANGUAGES } from "../constants/constants";
 import { type FromLanguage, type Language } from "../types.d";
 
 const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
 
-const configuration = new Configuration({ apiKey });
-const openai = new OpenAI(configuration);
+// const configuration = new Configuration({ apiKey });
+const openai = new OpenAIApi({ apiKey, dangerouslyAllowBrowser: true });
 
-export async function tranlate({
+enum ChatCompletionRequestMessageRoleEnum {
+  System = "system",
+  User = "user",
+  Assistant = "assistant",
+}
+
+export async function translate({
   fromLanguage,
   toLanguage,
   text,
@@ -58,7 +61,7 @@ export async function tranlate({
 
   const toCode = SUPPORTED_LANGUAGES[toLanguage];
 
-  const completion = await openai.createChatCompletion({
+  const completion = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
     messages: [
       ...messages,
@@ -69,5 +72,6 @@ export async function tranlate({
     ],
   });
 
-  return completion.data.choices[0]?.message?.content;
+  // return completion.data.choices[0]?.message?.content;
+  return completion.choices[0]?.message?.content;
 }
