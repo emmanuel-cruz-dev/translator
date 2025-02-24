@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { useStore } from "./hooks/useStore";
+import { useDebounce } from "./hooks/useDebounce";
 import { Container, Row, Col, Button, Stack } from "react-bootstrap";
 import { AUTO_LANGUAGE } from "./constants/constants";
 import { ArrowsIcon } from "./components/Icons";
@@ -24,16 +25,18 @@ function App() {
     setResult,
   } = useStore();
 
-  useEffect(() => {
-    if (fromText === "") return;
+  const debouncedFromText = useDebounce(fromText, 300);
 
-    translate({ fromLanguage, toLanguage, text: fromText })
+  useEffect(() => {
+    if (debouncedFromText === "") return;
+
+    translate({ fromLanguage, toLanguage, text: debouncedFromText })
       .then((result) => {
         if (result == null) return;
         setResult(result);
       })
       .catch(() => setResult("Error"));
-  }, [fromText, fromLanguage, toLanguage]);
+  }, [debouncedFromText, fromLanguage, toLanguage]);
 
   return (
     <Container fluid>
