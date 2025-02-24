@@ -68,4 +68,6 @@ export async function tranlate({
       },
     ],
   });
+
+  return completion.data.choices[0]?.message?.content;
 }
