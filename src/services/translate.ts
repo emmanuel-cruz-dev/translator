@@ -22,7 +22,7 @@ export async function translate({
   toLanguage: Language;
   text: string;
 }) {
-  if (fromLanguage == toLanguage) return text;
+  if (fromLanguage === toLanguage) return text;
 
   const messages = [
     {
@@ -72,6 +72,6 @@ export async function translate({
     ],
   });
 
-  // return completion.data.choices[0]?.message?.content;
+  //return completion.data.choices[0]?.message?.content;
   return completion.choices[0]?.message?.content;
 }
